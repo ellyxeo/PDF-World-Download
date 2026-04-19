@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF World — Descarga</title>
+<meta name="description" content="PDF World — Tu lector y gestor de PDF definitivo. Descarga el APK oficial.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f1f3f4;
+    --border: #e8eaed;
+    --text: #202124;
+    --text-secondary: #5f6368;
+    --text-tertiary: #80868b;
+    --accent: #01875f;
+    --accent-hover: #017352;
+    --star: #01875f;
+    --shadow-sm: 0 1px 2px rgba(60,64,67,.08);
+    --shadow-md: 0 2px 6px rgba(60,64,67,.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1418;
+      --surface: #16201d;
+      --surface-2: #1f2a26;
+      --border: #28332f;
+      --text: #e8eaed;
+      --text-secondary: #9aa0a6;
+      --text-tertiary: #80868b;
+      --accent: #00d28a;
+      --accent-hover: #00bd7b;
+      --star: #00d28a;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Google Sans Text', 'Roboto', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo-triangle {
+    width: 24px;
+    height: 24px;
+    position: relative;
+  }
+
+  .logo-triangle svg { width: 100%; height: 100%; }
+
+  /* Main content */
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  /* Hero section */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding: 24px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .hero-main {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .app-icon {
+    width: 144px;
+    height: 144px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.25), transparent 50%);
+  }
+
+  .app-icon-text {
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: white;
+    letter-spacing: -2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+    .app-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+    }
+    .app-icon-text { font-size: 32px; }
+    .hero-main { gap: 16px; }
+  }
+
+  .hero-info h1 {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  @media (max-width: 600px) {
+    .hero-info h1 { font-size: 28px; }
+  }
+
+  .developer {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .contains-ads {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+
+  .stat {
+    padding: 0 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    flex: 0 0 auto;
+  }
+
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+
+  .stat-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .star-icon { width: 14px; height: 14px; fill: var(--star); }
+
+  /* Download sidebar */
+  .download-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+  }
+
+  .btn-install {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .btn-install:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-install:active { transform: translateY(0); }
+
+  .download-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .download-info-item {
+    padding: 8px 0;
+  }
+
+  .download-info-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .download-info-value {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .device-compat {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Screenshots */
+  .section {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .screenshots {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .screenshots::-webkit-scrollbar { height: 8px; }
+  .screenshots::-webkit-scrollbar-track { background: transparent; }
+  .screenshots::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  .screenshot {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 440px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--surface-2);
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border);
+  }
+
+  .screenshot:hover { transform: scale(1.02); }
+
+  .screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* About */
+  .about-text {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tag {
+    padding: 6px 14px;
+    background: var(--surface-2);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* Rating section */
+  .rating-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .rating-row { grid-template-columns: 1fr; }
+  }
+
+  .rating-big {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+    margin: 8px 0;
+  }
+
+  .rating-stars svg { width: 14px; height: 14px; fill: var(--star); }
+
+  .rating-count {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .rating-bars { display: flex; flex-direction: column; gap: 6px; }
+
+  .rating-bar {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .bar-track {
+    height: 8px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  /* Footer */
+  footer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  /* Hide mobile sidebar */
+  @media (max-width: 900px) {
+    .download-card { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-triangle">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 20.5V3.5C3 2.9 3.7 2.5 4.2 2.8L19.6 11.3C20.1 11.6 20.1 12.4 19.6 12.7L4.2 21.2C3.7 21.5 3 21.1 3 20.5Z" fill="url(#g)"/>
+          <defs>
+            <linearGradient id="g" x1="3" y1="2" x2="20" y2="22">
+              <stop offset="0" stop-color="#00d28a"/>
+              <stop offset="1" stop-color="#01875f"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span>App Store</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-main">
+      <div class="app-icon">
+        <span class="app-icon-text">PDF</span>
+      </div>
+      <div class="hero-info">
+        <h1>PDF World</h1>
+        <div class="developer">ellyxeo</div>
+        <div class="contains-ads">Gratis · Sin anuncios</div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">
+              4.8
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <div class="stat-label">1K reseñas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">1K+</div>
+            <div class="stat-label">Descargas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div class="stat-label">Verificado</div>
+          </div>
+        </div>
+
+        <a href="versions/PDF-World-1.0.0.apk" class="btn-install" download style="display:none;" id="btn-mobile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Descargar APK
+        </a>
+      </div>
+    </div>
+
+    <!-- Download card -->
+    <aside class="download-card">
+      <a href="versions/PDF-World-1.0.0.apk" class="btn-install" download>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Descargar APK
+      </a>
+
+      <div class="download-info">
+        <div class="download-info-item">
+          <div class="download-info-label">Versión</div>
+          <div class="download-info-value">1.0.0</div>
+        </div>
+        <div class="download-info-item">
+          <div class="download-info-label">Tamaño</div>
+          <div class="download-info-value">Ligero</div>
+        </div>
+        <div class="download-info-item">
+          <div class="download-info-label">Categoría</div>
+          <div class="download-info-value">Productividad</div>
+        </div>
+        <div class="download-info-item">
+          <div class="download-info-label">Actualizado</div>
+          <div class="download-info-value">Abr 2026</div>
+        </div>
+      </div>
+
+      <div class="device-compat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25S8.25 13.31 8.25 14 7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg>
+        Compatible con Android 7.0+
+      </div>
+    </aside>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section">
+    <h2 class="section-title">Capturas de pantalla</h2>
+    <div class="screenshots">
+      <div class="screenshot"><img src="versions/images/Screenshot_20260419_091423_PDF World.jpg" alt="Captura 1" loading="lazy"></div>
+      <div class="screenshot"><img src="versions/images/Screenshot_20260419_091437_PDF World.jpg" alt="Captura 2" loading="lazy"></div>
+      <div class="screenshot"><img src="versions/images/Screenshot_20260419_091440_PDF World.jpg" alt="Captura 3" loading="lazy"></div>
+      <div class="screenshot"><img src="versions/images/Screenshot_20260419_091450_PDF World.jpg" alt="Captura 4" loading="lazy"></div>
+      <div class="screenshot"><img src="versions/images/Screenshot_20260419_091504_PDF World.jpg" alt="Captura 5" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section">
+    <h2 class="section-title">Acerca de esta app</h2>
+    <p class="about-text">
+      <strong>PDF World</strong> es tu lector y gestor de PDF definitivo para Android. Abre, lee y organiza tus documentos PDF con una interfaz limpia, rápida y diseñada para la productividad. Sin complicaciones, sin anuncios molestos.
+    </p>
+    <p class="about-text">
+      Con PDF World puedes visualizar cualquier archivo PDF con fluidez, navegar entre páginas con gestos naturales y mantener tu biblioteca de documentos perfectamente organizada. Ideal para estudiantes, profesionales y cualquiera que trabaje con documentos digitales a diario.
+    </p>
+    <div class="tags">
+      <span class="tag">Productividad</span>
+      <span class="tag">Lector PDF</span>
+      <span class="tag">Documentos</span>
+      <span class="tag">Oficina</span>
+    </div>
+  </section>
+
+  <!-- Ratings -->
+  <section class="section">
+    <h2 class="section-title">Calificaciones y reseñas</h2>
+    <div class="rating-row">
+      <div>
+        <div class="rating-big">4.8</div>
+        <div class="rating-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <div class="rating-count">1.024 reseñas</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-bar"><span>5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="rating-bar"><span>4</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div></div>
+        <div class="rating-bar"><span>3</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div></div>
+        <div class="rating-bar"><span>2</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div></div>
+        <div class="rating-bar"><span>1</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="section" style="border-bottom:none;">
+    <h2 class="section-title">Información de la app</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:16px;">
+      <div>
+        <div class="download-info-label">Versión</div>
+        <div class="download-info-value">1.0.0</div>
+      </div>
+      <div>
+        <div class="download-info-label">Actualizado</div>
+        <div class="download-info-value">19 abr. 2026</div>
+      </div>
+      <div>
+        <div class="download-info-label">Desarrollador</div>
+        <div class="download-info-value">ellyxeo</div>
+      </div>
+      <div>
+        <div class="download-info-label">Requisitos</div>
+        <div class="download-info-value">Android 7.0+</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 ellyxeo · <a href="https://github.com/ellyxeo/PDF-World-Download">Ver en GitHub</a></p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Lightbox for screenshots
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.screenshot img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+
+  // Show mobile download button on small screens
+  if (window.innerWidth <= 900) {
+    const btnMobile = document.getElementById('btn-mobile');
+    if (btnMobile) btnMobile.style.display = 'flex';
+  }
+</script>
+
+</body>
+</html>
